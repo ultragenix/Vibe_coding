@@ -1,0 +1,75 @@
+# [Project Name] — Conventions
+
+## Workflow (MANDATORY)
+
+**Multi-agent workflow. Never bypass.**
+
+Order: `briefer-dev → architect-dev → [developer-dev → qa-security-dev → validator-dev] × N parts`
+
+- No BRIEF.md? → briefer-dev
+- No PLAN.md? → architect-dev
+- PLAN.md exists? → developer-dev on next part
+
+Each agent: stops after its task, names the next agent, user commits + `/clear` between agents.
+
+**When no agent is active: do NOT write code or create project files. Route to the correct agent.**
+
+## Stack
+
+| Component | Technology | Version |
+|-----------|-----------|---------|
+| Language | | |
+| Framework | | |
+| Database | | |
+| Infra | | |
+| Containerization | | |
+
+## Naming
+
+- Code/commits: [English]
+- Variables/functions: [snake_case]
+- Classes: [PascalCase]
+- Constants: [UPPER_SNAKE_CASE]
+- SQL: keywords UPPERCASE, identifiers lowercase
+- Files: [snake_case]
+- Branches: feat/description, fix/description
+- Commits: `type(scope): description` — types: feat, fix, refactor, docs, chore, test
+
+## Directory Structure
+
+```
+project/
+├── .claude/agents/
+├── CLAUDE.md
+├── PLAN.md / STATE.md / CORRECTIONS.md
+├── docs/   (BRIEF.md, DATA_SOURCES.md, ENRICHMENT_CATALOG.md)
+├── REPORTS/
+├── src/
+└── tests/
+```
+
+## Code Standards
+
+- Functions < 30 lines, single responsibility
+- Type hints everywhere
+- Named constants, no magic values
+- No print/console.log in production — use logging
+- DRY after 2 repetitions
+- Tests: `test_[what]_[condition]_[expected]`
+- Comments ABOVE the line, NEVER inline. Applies to ALL files: code, config, .env, .gitignore, Dockerfile, Terraform, YAML, TOML. Many tools (Docker, shell) don't strip inline comments and treat them as values.
+
+## Git
+
+- One logical change per commit
+- Never commit: secrets, .env, large data, terraform state
+- Never reference Claude/AI/LLM in commits
+
+## Agent Behavior
+
+**Announce before acting.** Before creating/modifying files: explain the plan, ask for confirmation, wait for OK. Does not apply to reading files or read-only modes.
+
+**Agent source of truth.** Any modification to an agent, skill, or template in this project's `.claude/agents/`, `.claude/skills/`, or `.claude/templates/` must also be replicated to the upstream source at `/home/kalou/WorkSpace/Agent_Workflow/`. The two copies must always stay in sync.
+
+## External Requirements
+
+- [Scoring criteria / deadline / infra constraints]

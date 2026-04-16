@@ -1,0 +1,52 @@
+# Agent framework (proprietary — never commit)
+.claude/
+CLAUDE.md
+
+# Workflow artifacts (internal — auto-managed by agents)
+STATE.md
+CORRECTIONS.md
+REPORTS/
+PLAN.md
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+
+# Docker volumes
+docker-data/
+postgres-data/
+redis-data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Data (large files)
+*.csv
+*.parquet
+*.xlsx
+*.sqlite
+*.db
+data/raw/
+data/tmp/
